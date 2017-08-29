@@ -1,0 +1,111 @@
+<html>
+<head>
+  <title>central park</title>
+
+
+  <style>
+
+  html, body, #map {
+    height: 100%;
+    padding: 1%;
+    margin: 0;
+  }
+
+  </style>
+
+  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" /> <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@0.4.9/dist/leaflet.draw.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" /> 
+  <link rel="stylesheet" type="text/css" href="css/leaflet.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="css/leaflet.draw.css" /> -->
+
+</head>
+<body>
+  <div id="map"></div>
+
+  <div id='Title'>
+  central park
+  </div>
+
+
+  <div id="form">
+    <div id="textbox">
+   <p>Click the map to find the park restroom nearest to that location.
+   </br>
+    Start an edit session to report additional areas of interest.</p>
+    </div>
+    <form action="">
+      <input type="button" id = "reset" onclick="showNone()" value="RESET MAP">
+      <input type="button" id = "start" onclick="startEdits()" value="START EDIT">
+      <input type="button" id = "stop" onclick="stopEdits()" value="STOP EDIT">
+
+<!--       <div><img id="myImage" src="http://www.imageurlhost.com/images/8z26s5wwt04ersuf3wnj.jpg" /></div>
+      <input type="button" value="Start" onclick="javaScript:startStopImg()" id="startButton">
+ -->
+
+      <div id="dialog" title="Before you leave:">
+        <form>
+          <fieldset>
+            <label for="username"> </label>
+            <input type="text" name="username" id="username" placeholder="Name, please" class="text ui-widget-content ui-corner-all">
+            <label for="description"> </label>
+            <input type="text" name="description" id="description" placeholder="What's here?" class="text ui-widget-content ui-corner-all">
+            <input type="submit" tabindex="-1" style="position:absolute; top:-900px">
+          </fieldset>
+        </form>
+      </div>
+    </form>
+  </div>
+
+
+  <div id="layer_selector" class="cartodb-infobox">
+    <ul>
+
+
+      <li id="abc" style="color:black"><b>all</b></li>
+      <li id="wifi" style="color:#7570b3"><b>wifi</b></li>  
+      <li id="crime" style="color:#e41a1c"><b>crimes</b></li> 
+      <li id="athleticfacilities" style="color:#66a61e"><b>athletic facilities</b></li>
+      <li id="bikeroutes" style="color:#e6ab02"><b>bike routes</b></li>
+      <li id="playgrounds" style="color:#e7298a"><b>playgrounds</b></li>
+      <li id="pools" style="color:#1b9e77"><b>pools</b></li>
+      <li id="restrooms" style="color:#d95f02"><b>restrooms</b></li>
+      
+      
+     
+    </ul>
+  </div>
+
+<!--   <div id='text2' class='map'>
+    
+  <script type="infowindow/html" id="infowindow_template">
+      <div class="cartodb-popup">
+           <a href="#close" class="cartodb-popup-close-button close">x</a>
+
+               <div class="cartodb-popup-content-wrapper">
+                 <div class="cartodb-popup-content">
+                   // fields to show
+                 </div>
+               </div>
+               <div class="cartodb-popup-tip-container"></div>
+            </div>
+          </script>
+          </div> -->
+
+
+  <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.css" />
+  <script src="https://unpkg.com/leaflet-draw@0.4.9/dist/leaflet.draw.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+  <script src="js/L.location.js"></script>
+  <script src="js/main.js"></script>
+
+ </body>
+</html>
+
