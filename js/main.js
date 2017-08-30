@@ -16,7 +16,7 @@ lc = L.control.locate({
     }
 }).addTo(map);
 
-var basemap = L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+var basemap = L.tileLayer('http://a.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://maps.stamen.com">Stamen</a>'
 });
 
@@ -26,7 +26,7 @@ basemap.addTo(map);
 
 //COLORBREWER
 //POLYGONS teal
-var cartoCSSpools ="#layer {" +
+var cartoCSSwater ="#layer {" +
   "polygon-fill: #1b9e77;" +
   "polygon-opacity: 1;" +
   "line-width: 1;" +
@@ -46,7 +46,7 @@ var cartoCSSplaygrounds ="#layer {" +
 //POINTS
 //will ideally use icons but styling markers for now
 var cartoCSSwifi = "#layer { "+
-    "marker-width: 13;" +
+    "marker-width: 16;" +
     "marker-fill: #7570b3;" +
     "marker-fill-opacity: 1;" +
     "marker-allow-overlap: true;" +
@@ -58,7 +58,7 @@ var cartoCSSwifi = "#layer { "+
   //POINTS
 //will ideally use icons but styling markers for now
 var cartoCSSrestrooms = "#layer { "+
-    "marker-width: 13;" +
+    "marker-width: 16;" +
     "marker-fill: #d95f02;" +
     "marker-fill-opacity: 1;" +
     "marker-allow-overlap: true;" +
@@ -69,7 +69,7 @@ var cartoCSSrestrooms = "#layer { "+
 
 //POINTS
 var cartoCSScrime = "#layer {" +
-  "marker-width: 13;" +
+  "marker-width: 16;" +
   "marker-fill: #e41a1c;" +
   "marker-fill-opacity: 1;" +
   "marker-allow-overlap: false;" +
@@ -80,7 +80,7 @@ var cartoCSScrime = "#layer {" +
 
 //LINES
 var cartoCSSbikeroutes = "#layer {" +
-  "line-width: 3;" +
+  "line-width: 4;" +
   "line-color: #e6ab02;" +
   "line-opacity: 1;" +
 "}"
@@ -97,7 +97,7 @@ var cartoCSSathleticfacilities = "#layer {" +
 
 //order should be: athleticfacilities, playgrounds, bikeroutes, crime, wifi
 
-var bikeroutes, wifi, crime, athleticfacilities, playgrounds, pools, restrooms
+var bikeroutes, wifi, crime, athleticfacilities, playgrounds, water, restrooms
 
 // add cartodb layer with one layer
 cartodb.createLayer(map, {
@@ -134,8 +134,8 @@ cartodb.createLayer(map, {
        },
 
              { // first sublayer is the one that is painted at the bottom
-          sql: "SELECT * FROM pools WHERE name = 'Lasker'", // Required
-          cartocss: cartoCSSpools, // Required
+          sql: "SELECT * FROM water'", // Required
+          cartocss: cartoCSSwater, // Required
 
        },
 
@@ -150,22 +150,22 @@ cartodb.createLayer(map, {
 .done(function(layer){
 
 bikeroutes = layer.getSubLayer(0); // declare a layer1 variable
-cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['tostreet', 'fromstreet', 'comments'])
+cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['street', 'comments'])
 
 wifi = layer.getSubLayer(1); // declare a layer0 variable
 cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(1), ['type', 'location'])
 
 crime = layer.getSubLayer(2); // declare a layer1 variable
-cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(2), ['pd_desc', 'cmplnt_fr_'])
+cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(2), ['crime'])
 
 athleticfacilities = layer.getSubLayer(3); // declare a layer1 variable
-cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(3), ['name', 'accessible'])
+cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(3), ['name', 'surface', 'handball', 'softball', 'frisbee', 'baseball', 'basketball', 'accessible'])
 
 playgrounds = layer.getSubLayer(4); // declare a layer1 variable
-cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(4), [])
+cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(4), ['name'])
 
-pools = layer.getSubLayer(5); // declare a layer1 variable
-cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(5), ['name', 'location', 'type'])
+water = layer.getSubLayer(5); // declare a layer1 variable
+cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(5), ['name'])
 
 restrooms = layer.getSubLayer(6); // declare a layer1 variable
 cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(6), ['name', 'location', 'hours'])
@@ -183,7 +183,7 @@ $options.click(function(e) {
       layer.getSubLayer(2).hide(); //crime
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
-      layer.getSubLayer(5).hide(); //pools
+      layer.getSubLayer(5).hide(); //water
       layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
@@ -193,7 +193,7 @@ $options.click(function(e) {
       layer.getSubLayer(2).hide(); //crime
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
-      layer.getSubLayer(5).hide(); //pools
+      layer.getSubLayer(5).hide(); //water
       layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
@@ -203,7 +203,7 @@ $options.click(function(e) {
       layer.getSubLayer(2).show();//crime
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
-      layer.getSubLayer(5).hide(); //pools
+      layer.getSubLayer(5).hide(); //water
       layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
@@ -213,7 +213,7 @@ $options.click(function(e) {
       layer.getSubLayer(2).hide();//crime
       layer.getSubLayer(3).show(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
-      layer.getSubLayer(5).hide(); //pools
+      layer.getSubLayer(5).hide(); //water
       layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
@@ -223,17 +223,17 @@ $options.click(function(e) {
       layer.getSubLayer(2).hide(); //crime
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).show(); //playgrounds
-      layer.getSubLayer(5).hide(); //pools
+      layer.getSubLayer(5).hide(); //water
       layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
-      else if (legend == 'pools') {
+      else if (legend == 'water') {
       layer.getSubLayer(0).hide(); // bikeroutes
       layer.getSubLayer(1).hide(); // wifi
       layer.getSubLayer(2).hide();//crime
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
-      layer.getSubLayer(5).show(); //pools
+      layer.getSubLayer(5).show(); //water
       layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
@@ -243,7 +243,7 @@ $options.click(function(e) {
       layer.getSubLayer(2).hide();//crime
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
-      layer.getSubLayer(5).hide(); //pools
+      layer.getSubLayer(5).hide(); //water
       layer.getSubLayer(6).show(); //restrooms
        console.log(legend);
     }
@@ -253,7 +253,7 @@ $options.click(function(e) {
       layer.getSubLayer(2).show();//crime
       layer.getSubLayer(3).show(); //athletic facilities
       layer.getSubLayer(4).show(); //playgrounds
-      layer.getSubLayer(5).show(); //pools
+      layer.getSubLayer(5).show(); //water
       layer.getSubLayer(6).show(); //restrooms
        console.log(legend);
     }
@@ -268,16 +268,16 @@ $options.click(function(e) {
 
 
 //attempt at creating a restroom search
-$('#searchButton').click(function(){
-  input = $( "#ad").val();
-  var sql = new cartodb.SQL({ user: 'nrobson' });
-  sql.getBounds("SELECT * FROM restrooms '" + input + "'").done(function(bounds) {
-     map.fitBounds(bounds)
-     });
-   });
+// $('#searchButton').click(function(){
+//   input = $( "#ad").val();
+//   var sql = new cartodb.SQL({ user: 'nrobson' });
+//   sql.getBounds("SELECT * FROM restrooms '" + input + "'").done(function(bounds) {
+//      map.fitBounds(bounds)
+//      });
+//    });
 
-var wifiLocations = null;
-var sqlQuery = "SELECT * FROM restrooms";
+// var wifiLocations = null;
+// var sqlQuery = "SELECT * FROM restrooms";
 var cartoDBUserName = "nrobson";
 
 // Set Global Variable that will hold your location
@@ -292,9 +292,9 @@ map.on('click', locationFound);
 // Function that will run when the location of the user is found
 function locationFound(e){
     myLocation = e.latlng;
-    closestrestrooms();
-    locationMarker = L.marker(e.latlng);
-    map.addLayer(locationMarker);
+    // closestrestrooms();
+    // locationMarker = L.marker(e.latlng);
+    // map.addLayer(locationMarker);
 };
 
 // Function that will run if the location of the user is not found

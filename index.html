@@ -2,17 +2,6 @@
 <head>
   <title>central park</title>
 
-
-  <style>
-
-  html, body, #map {
-    height: 100%;
-    padding: 1%;
-    margin: 0;
-  }
-
-  </style>
-
   <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" /> <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@0.4.9/dist/leaflet.draw.css" />
@@ -24,7 +13,7 @@
 
 </head>
 <body>
-  <div id="map"></div>
+  <div id="map"></div> 
 
   <div id='Title'>
   central park
@@ -33,18 +22,13 @@
 
   <div id="form">
     <div id="textbox">
-   <p>Click the map to find the park restroom nearest to that location.
-   </br>
-    Start an edit session to report additional areas of interest.</p>
+   <p>Start an edit session to report additional areas of interest.</p>
     </div>
     <form action="">
       <input type="button" id = "reset" onclick="showNone()" value="RESET MAP">
       <input type="button" id = "start" onclick="startEdits()" value="START EDIT">
       <input type="button" id = "stop" onclick="stopEdits()" value="STOP EDIT">
 
-<!--       <div><img id="myImage" src="http://www.imageurlhost.com/images/8z26s5wwt04ersuf3wnj.jpg" /></div>
-      <input type="button" value="Start" onclick="javaScript:startStopImg()" id="startButton">
- -->
 
       <div id="dialog" title="Before you leave:">
         <form>
@@ -71,30 +55,11 @@
       <li id="athleticfacilities" style="color:#66a61e"><b>athletic facilities</b></li>
       <li id="bikeroutes" style="color:#e6ab02"><b>bike routes</b></li>
       <li id="playgrounds" style="color:#e7298a"><b>playgrounds</b></li>
-      <li id="pools" style="color:#1b9e77"><b>pools</b></li>
+      <li id="water" style="color:#1b9e77"><b>water</b></li>
       <li id="restrooms" style="color:#d95f02"><b>restrooms</b></li>
-      
-      
-     
+    
     </ul>
   </div>
-
-<!--   <div id='text2' class='map'>
-    
-  <script type="infowindow/html" id="infowindow_template">
-      <div class="cartodb-popup">
-           <a href="#close" class="cartodb-popup-close-button close">x</a>
-
-               <div class="cartodb-popup-content-wrapper">
-                 <div class="cartodb-popup-content">
-                   // fields to show
-                 </div>
-               </div>
-               <div class="cartodb-popup-tip-container"></div>
-            </div>
-          </script>
-          </div> -->
-
 
   <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
