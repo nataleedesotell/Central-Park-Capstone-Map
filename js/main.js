@@ -26,7 +26,7 @@ basemap.addTo(map);
 
 //COLORBREWER
 //POLYGONS teal
-var cartoCSSpools ="#layer {" +
+var cartoCSSwater ="#layer {" +
   "polygon-fill: #1b9e77;" +
   "polygon-opacity: 1;" +
   "line-width: 1;" +
@@ -97,7 +97,7 @@ var cartoCSSathleticfacilities = "#layer {" +
 
 //order should be: athleticfacilities, playgrounds, bikeroutes, crime, wifi
 
-var bikeroutes, wifi, crime, athleticfacilities, playgrounds, pools, restrooms
+var bikeroutes, wifi, crime, athleticfacilities, playgrounds, water, restrooms
 
 // add cartodb layer with one layer
 cartodb.createLayer(map, {
@@ -134,8 +134,8 @@ cartodb.createLayer(map, {
        },
 
              { // first sublayer is the one that is painted at the bottom
-          sql: "SELECT * FROM pools'", // Required
-          cartocss: cartoCSSpools, // Required
+          sql: "SELECT * FROM water'", // Required
+          cartocss: cartoCSSwater, // Required
 
        },
 
@@ -164,7 +164,7 @@ cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(3), ['name', 'surface', 'ha
 playgrounds = layer.getSubLayer(4); // declare a layer1 variable
 cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(4), ['name'])
 
-pools = layer.getSubLayer(5); // declare a layer1 variable
+water = layer.getSubLayer(5); // declare a layer1 variable
 cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(5), ['name'])
 
 restrooms = layer.getSubLayer(6); // declare a layer1 variable
@@ -227,7 +227,7 @@ $options.click(function(e) {
       layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
-      else if (legend == 'pools') {
+      else if (legend == 'water') {
       layer.getSubLayer(0).hide(); // bikeroutes
       layer.getSubLayer(1).hide(); // wifi
       layer.getSubLayer(2).hide();//crime
@@ -247,7 +247,7 @@ $options.click(function(e) {
       layer.getSubLayer(6).show(); //restrooms
        console.log(legend);
     }
-    else if (legend == 'abc'){
+    else {
       layer.getSubLayer(0).show(); // bikeroutes
       layer.getSubLayer(1).show(); // wifi
       layer.getSubLayer(2).show();//crime
