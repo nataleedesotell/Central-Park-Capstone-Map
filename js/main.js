@@ -26,13 +26,13 @@ basemap.addTo(map);
 
 //COLORBREWER
 //POLYGONS teal
-var cartoCSSwater ="#layer {" +
-  "polygon-fill: #1b9e77;" +
-  "polygon-opacity: 1;" +
-  "line-width: 1;" +
-  "line-color: #FFF;" +
-  "line-opacity: 0.0;" +
-"}"
+// var cartoCSSwater ="#layer {" +
+//   "polygon-fill: #1b9e77;" +
+//   "polygon-opacity: 1;" +
+//   "line-width: 1;" +
+//   "line-color: #FFF;" +
+//   "line-opacity: 0.0;" +
+// "}"
 
 //POLYGONS pink
 var cartoCSSplaygrounds ="#layer {" +
@@ -97,7 +97,7 @@ var cartoCSSathleticfacilities = "#layer {" +
 
 //order should be: athleticfacilities, playgrounds, bikeroutes, crime, wifi
 
-var bikeroutes, wifi, crime, athleticfacilities, playgrounds, water, restrooms
+var bikeroutes, wifi, crime, athleticfacilities, playgrounds, restrooms
 
 // add cartodb layer with one layer
 cartodb.createLayer(map, {
@@ -133,11 +133,11 @@ cartodb.createLayer(map, {
 
        },
 
-             { // first sublayer is the one that is painted at the bottom
-          sql: "SELECT * FROM water'", // Required
-          cartocss: cartoCSSwater, // Required
+       //       { // first sublayer is the one that is painted at the bottom
+       //    sql: "SELECT * FROM water'", // Required
+       //    cartocss: cartoCSSwater, // Required
 
-       },
+       // },
 
            { // first sublayer is the one that is painted at the bottom
           sql: "SELECT * FROM restrooms", // Required
@@ -164,11 +164,11 @@ cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(3), ['name', 'surface', 'ha
 playgrounds = layer.getSubLayer(4); // declare a layer1 variable
 cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(4), ['name'])
 
-water = layer.getSubLayer(5); // declare a layer1 variable
-cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(5), ['name'])
+// water = layer.getSubLayer(5); // declare a layer1 variable
+// cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(5), ['name'])
 
-restrooms = layer.getSubLayer(6); // declare a layer1 variable
-cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(6), ['name', 'location', 'hours'])
+restrooms = layer.getSubLayer(5); // declare a layer1 variable
+cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(5), ['name', 'location', 'hours'])
 
 var $options = $('#layer_selector li');
 $options.click(function(e) {
@@ -184,7 +184,7 @@ $options.click(function(e) {
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
       layer.getSubLayer(5).hide(); //water
-      layer.getSubLayer(6).hide(); //restrooms
+      // layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
     else if (legend == 'wifi') {
@@ -194,7 +194,7 @@ $options.click(function(e) {
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
       layer.getSubLayer(5).hide(); //water
-      layer.getSubLayer(6).hide(); //restrooms
+      // layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
     else if (legend == 'crime') {
@@ -204,7 +204,7 @@ $options.click(function(e) {
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
       layer.getSubLayer(5).hide(); //water
-      layer.getSubLayer(6).hide(); //restrooms
+      // layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
     else if (legend == 'athleticfacilities') {
@@ -214,7 +214,7 @@ $options.click(function(e) {
       layer.getSubLayer(3).show(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
       layer.getSubLayer(5).hide(); //water
-      layer.getSubLayer(6).hide(); //restrooms
+      // layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
       else if (legend == 'playgrounds') {
@@ -224,27 +224,47 @@ $options.click(function(e) {
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).show(); //playgrounds
       layer.getSubLayer(5).hide(); //water
-      layer.getSubLayer(6).hide(); //restrooms
+      // layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
-      else if (legend == 'water') {
-      layer.getSubLayer(0).hide(); // bikeroutes
-      layer.getSubLayer(1).hide(); // wifi
-      layer.getSubLayer(2).hide();//crime
-      layer.getSubLayer(3).hide(); //athletic facilities
-      layer.getSubLayer(4).hide(); //playgrounds
-      layer.getSubLayer(5).show(); //water
-      layer.getSubLayer(6).hide(); //restrooms
-       console.log(legend);
-    }
+    //   else if (legend == 'water') {
+    //   layer.getSubLayer(0).hide(); // bikeroutes
+    //   layer.getSubLayer(1).hide(); // wifi
+    //   layer.getSubLayer(2).hide();//crime
+    //   layer.getSubLayer(3).hide(); //athletic facilities
+    //   layer.getSubLayer(4).hide(); //playgrounds
+    //   layer.getSubLayer(5).show(); //water
+    //  layer.getSubLayer(6).hide(); //restrooms
+    //    console.log(legend);
+    // }
       else if (legend == 'restrooms') {
       layer.getSubLayer(0).hide(); // bikeroutes
       layer.getSubLayer(1).hide(); // wifi
       layer.getSubLayer(2).hide();//crime
       layer.getSubLayer(3).hide(); //athletic facilities
       layer.getSubLayer(4).hide(); //playgrounds
+      layer.getSubLayer(5).show(); //water
+      // layer.getSubLayer(6).show(); //restrooms
+       console.log(legend);
+    }
+     else if (legend == 'abc') {
+      layer.getSubLayer(0).show(); // bikeroutes
+      layer.getSubLayer(1).show(); // wifi
+      layer.getSubLayer(2).show();//crime
+      layer.getSubLayer(3).show(); //athletic facilities
+      layer.getSubLayer(4).show(); //playgrounds
+      layer.getSubLayer(5).show(); //water
+      // layer.getSubLayer(6).show(); //restrooms
+       console.log(legend);
+    }
+      else if (legend == undefined) {
+      layer.getSubLayer(0).hide(); // bikeroutes
+      layer.getSubLayer(1).hide(); // wifi
+      layer.getSubLayer(2).hide();//crime
+      layer.getSubLayer(3).hide(); //athletic facilities
+      layer.getSubLayer(4).hide(); //playgrounds
       layer.getSubLayer(5).hide(); //water
-      layer.getSubLayer(6).show(); //restrooms
+      // layer.getSubLayer(6).hide(); //restrooms
        console.log(legend);
     }
     else {
@@ -254,7 +274,7 @@ $options.click(function(e) {
       layer.getSubLayer(3).show(); //athletic facilities
       layer.getSubLayer(4).show(); //playgrounds
       layer.getSubLayer(5).show(); //water
-      layer.getSubLayer(6).show(); //restrooms
+      // layer.getSubLayer(6).show(); //restrooms
        console.log(legend);
     }
   }
